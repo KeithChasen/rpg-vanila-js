@@ -6,7 +6,7 @@ class Person {
     w = 20;
     h = 20;
 
-    speed = 1;
+    speed = 2;
 
     ctx = null;
 

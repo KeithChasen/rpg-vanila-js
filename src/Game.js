@@ -16,6 +16,7 @@ class Game {
 
         this.map = new GameMap();
 
+        this.map.setCanvas(cnv);
         this.map.setContext(ctx);
         this.map.setLower('src/img/test-map-bottom.png');
         this.map.setUpper('src/img/test-map-top.png');
@@ -40,7 +41,7 @@ class Game {
 
         this.player.draw();
 
-        this.map.drawUpper();
+        // this.map.drawUpper();
     }
 
     sCollision() {
