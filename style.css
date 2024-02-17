@@ -1,0 +1,9 @@
+body {
+    background: grey;
+    text-align: center;
+    overflow: hidden;
+}
+
+#game {
+    background: darkgray;
+}
