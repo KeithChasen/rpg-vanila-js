@@ -6,11 +6,19 @@ class Game {
 
     player = null;
 
+    map = null;
+
     currentFrame = 0;
 
     init(cnv, ctx) {
         this.cnv = cnv;
         this.ctx = ctx;
+
+        this.map = new GameMap();
+
+        this.map.setContext(ctx);
+        this.map.setLower('src/img/test-map-bottom.png');
+        this.map.setUpper('src/img/test-map-top.png');
 
         this.spawnPlayer();
     }
@@ -28,7 +36,11 @@ class Game {
     }
 
     sRender() {
+        this.map.drawLower();
 
+        this.player.draw();
+
+        this.map.drawUpper();
     }
 
     sCollision() {
@@ -50,7 +62,9 @@ class Game {
 
     run() {
 
-        this.player.draw();
+
+        this.sRender();
+        
         this.player.update();
        
         this.currentFrame++;
