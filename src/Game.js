@@ -15,7 +15,7 @@ class Game {
         this.ctx = ctx;
 
         this.map = new GameMap();
-
+  
         this.map.setCanvas(cnv);
         this.map.setContext(ctx);
         this.map.setLower('src/img/test-map-bottom.png');
@@ -41,7 +41,7 @@ class Game {
 
         this.player.draw();
 
-        // this.map.drawUpper();
+        this.map.drawUpper();
     }
 
     sCollision() {
@@ -50,7 +50,9 @@ class Game {
 
     spawnPlayer() {
         // load coordinates of player from config or save file
-        this.player = new Player(100, 100, this.ctx);
+        this.player = new Player(100, 100, this.ctx, this.cnv);
+
+        this.map.setPlayer(this.player);
     }
 
     spawnNPCs() {

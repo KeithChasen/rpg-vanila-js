@@ -9,24 +9,15 @@ class Person {
     speed = 2;
 
     ctx = null;
+    cnv = null;
 
-    constructor(x, y, ctx) {
+    constructor(x, y, ctx, cnv) {
         this.x = x;
         this.y = y;
         this.ctx = ctx;
+        this.cnv = cnv;
     }
 
 
-    draw() {
-        if (!this.ctx) return ;
-        
-        this.ctx.beginPath();
-        this.ctx.rect(
-            this.x - this.w/2,
-            this.y - this.h/2,
-            this.w,
-            this.h
-        );
-        this.ctx.fill();
-    }
+    
 }

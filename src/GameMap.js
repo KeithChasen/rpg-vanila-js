@@ -15,6 +15,13 @@ class GameMap {
     xDim = 0;
     yDim = 0;
 
+    whereToPlace = {
+        x: 0,
+        y: 0
+    }
+
+    player = null;
+
     setContext(ctx) {
         this.ctx = ctx;
     }
@@ -24,6 +31,15 @@ class GameMap {
 
         this.xDim = this.mapSize.x * this.squareSize;
         this.yDim = this.mapSize.y * this.squareSize;
+
+        this.whereToPlace = {
+            x: cnv.width / 2,
+            y: cnv.height / 2
+        }
+    }
+
+    setPlayer(player) {
+        this.player = player
     }
 
     setLower(source) {
@@ -38,36 +54,38 @@ class GameMap {
 
     drawLower() {
         this.ctx && this.lowerPicture &&
-
-            this.ctx.drawImage(
-                this.lowerPicture, 
-
-                // this should depend on player position
-                // xStartClip, 
-                // yStartClip
-                0, 
-                0,
-
-                // xWidthOfClipped
-                // yWidthOfClipped
-                this.xDim,
-                this.yDim,
-
-            
-                // xWherePlace
-                // yWherePlace
-                0,
-                0,
-
-                // wOfImageToUse
-                // hOfImageToUse
-                this.cnv.width, 
-                this.cnv.height 
-            );
+            this.drawInMovement(this.lowerPicture);   
     }
 
     drawUpper() {
         this.ctx && this.upperPicture &&
-        this.ctx.drawImage(this.upperPicture, 0, 0);
+            this.drawInMovement(this.upperPicture);
+    }
+
+    drawInMovement(image) {
+        this.ctx.drawImage(
+            image,
+
+           // this should depend on player position
+           // xStartClip, 
+           // yStartClip
+           0,
+           0,
+
+           // xWidthOfClipped
+           // yWidthOfClipped
+           this.xDim,
+           this.yDim,
+
+           // xWherePlace
+           // yWherePlace
+           this.whereToPlace.x - this.player.x,
+           this.whereToPlace.y - this.player.y,
+
+           // wOfImageToUse
+           // hOfImageToUse
+           this.cnv.width, 
+           this.cnv.height 
+       );
     }
 }
