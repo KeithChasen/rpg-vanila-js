@@ -6,11 +6,11 @@ class GameMap {
 
     // the size of a 1 tile of a map
     //should be configurable
-    squareSize = 32;
+    squareSize = 0;
 
     // size of the current map
     // should be configurable
-    mapSize = { x:20, y:12 };
+    mapSize = { x: 0, y: 0 };
 
     xDim = 0;
     yDim = 0;
@@ -21,6 +21,14 @@ class GameMap {
     }
 
     player = null;
+
+    setSquareSize(squareSize) {
+        this.squareSize = squareSize;
+    }
+
+    setMapSize(mapSize) {
+        this.mapSize = mapSize;
+    }
 
     setContext(ctx) {
         this.ctx = ctx;
@@ -79,8 +87,8 @@ class GameMap {
 
            // xWherePlace
            // yWherePlace
-           this.whereToPlace.x - this.player.x,
-           this.whereToPlace.y - this.player.y,
+           this.whereToPlace.x - this.player.position.x,
+           this.whereToPlace.y - this.player.position.y,
 
            // wOfImageToUse
            // hOfImageToUse

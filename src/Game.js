@@ -14,14 +14,25 @@ class Game {
         this.cnv = cnv;
         this.ctx = ctx;
 
+        // make this conditional
+        const level = levelMaps.main;
+
+        const { player, walls, squareSize, mapSize, lowerImage, topImage } =  level;
+
+        console.log(walls, 'w')
+
         this.map = new GameMap();
   
+        this.map.setMapSize(mapSize);
+        this.map.setSquareSize(squareSize);
+
         this.map.setCanvas(cnv);
         this.map.setContext(ctx);
-        this.map.setLower('src/img/test-map-bottom.png');
-        this.map.setUpper('src/img/test-map-top.png');
 
-        this.spawnPlayer();
+        this.map.setLower(lowerImage);
+        this.map.setUpper(topImage);
+
+        this.spawnPlayer(player.x, player.y, walls);
     }
 
     playerMovement() {
@@ -48,21 +59,28 @@ class Game {
         // process collisions here
     }
 
-    spawnPlayer() {
+    spawnPlayer(x, y, walls) {
         const mapBorders = {
             x: this.map.mapSize.x * this.map.squareSize,
             y: this.map.mapSize.y * this.map.squareSize,
         }
 
         // load coordinates of player from config or save file
-        this.player = new Player(
-            100, 
-            100, 
-            this.ctx, 
-            this.cnv,
-
-            mapBorders
+        this.player = new Player();
+        this.player.setPosition(
+            x * this.map.squareSize, 
+            y * this.map.squareSize
         );
+        this.player.setCanvas(this.cnv);
+        this.player.setContext(this.ctx);
+        this.player.setMapBorders(mapBorders);
+        this.player.setSquareSize(this.map.squareSize);
+        this.player.setWalls(walls);
+            
+
+            // mapBorders,
+            // walls
+        // );
 
         this.map.setPlayer(this.player);
     }

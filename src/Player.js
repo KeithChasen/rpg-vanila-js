@@ -1,34 +1,61 @@
 class Player extends Person {
     controllers = null;
     mapBorders = null;
+    squareSize = 0;
+    walls = [];
 
-    constructor(x,y, ctx, cnv, mapBorders) {
-        super(x,y, ctx, cnv);
-
-        this.mapBorders = mapBorders;
-
+    constructor() {
+        super();
         this.controllers = new Controllers();
     }
 
+    setSquareSize(squareSize){
+        this.squareSize = squareSize;
+    }
+
+    setMapBorders(mapBorders) {
+        this.mapBorders = mapBorders;
+    }
+
+    setWalls(walls) {
+        this.walls = walls;
+    }
+
     update() {
+        this.velocity = new Vector(0, 0);
 
-        // console.log(this.x, this.y)
-
-        if (this.controllers.up && this.y > 0) {
-            this.y -= this.speed;
+        if (this.controllers.up && this.position.y > 0) {
+            this.velocity = new Vector(
+                this.velocity.x,
+                this.velocity.y - this.speed
+            )
         }
 
-        if (this.controllers.down && this.y < this.mapBorders.y - this.h) {
-            this.y += this.speed;
+        if (this.controllers.down && this.position.y < this.mapBorders.y - this.h) {
+            this.velocity = new Vector(
+                this.velocity.x,
+                this.velocity.y + this.speed
+            )
         }
 
-        if (this.controllers.left && this.x > 0) {
-            this.x -= this.speed;
+        if (this.controllers.left && this.position.x > 0) {
+            this.velocity = new Vector(
+                this.velocity.x - this.speed,
+                this.velocity.y
+            )
         }
 
-        if (this.controllers.right && this.x < this.mapBorders.x - this.w) {
-            this.x += this.speed;
+        if (this.controllers.right && this.position.x < this.mapBorders.x - this.w) {
+            this.velocity = new Vector(
+                this.velocity.x + this.speed,
+                this.velocity.y
+            )
         }
+
+        this.velocity.normalize();
+
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
     }
 
     draw() {

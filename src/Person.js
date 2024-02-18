@@ -1,23 +1,23 @@
 class Person {
-
-    x = 0;
-    y = 0;
+    position = new Vector(0, 0);
+    velocity = new Vector(0, 0);
+    speed = 2;
 
     w = 20;
     h = 20;
 
-    speed = 2;
-
     ctx = null;
     cnv = null;
 
-    constructor(x, y, ctx, cnv) {
-        this.x = x;
-        this.y = y;
-        this.ctx = ctx;
+    setPosition(x, y) {
+        this.position = new Vector(x, y);
+    }
+
+    setCanvas(cnv) {
         this.cnv = cnv;
     }
 
-
-    
+    setContext(ctx) {
+        this.ctx = ctx;
+    }  
 }
