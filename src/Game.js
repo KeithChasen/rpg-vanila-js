@@ -49,8 +49,20 @@ class Game {
     }
 
     spawnPlayer() {
+        const mapBorders = {
+            x: this.map.mapSize.x * this.map.squareSize,
+            y: this.map.mapSize.y * this.map.squareSize,
+        }
+
         // load coordinates of player from config or save file
-        this.player = new Player(100, 100, this.ctx, this.cnv);
+        this.player = new Player(
+            100, 
+            100, 
+            this.ctx, 
+            this.cnv,
+
+            mapBorders
+        );
 
         this.map.setPlayer(this.player);
     }
@@ -64,8 +76,6 @@ class Game {
     }
 
     run() {
-
-
         this.sRender();
         
         this.player.update();

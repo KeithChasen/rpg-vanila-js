@@ -84,8 +84,8 @@ class GameMap {
 
            // wOfImageToUse
            // hOfImageToUse
-           this.cnv.width, 
-           this.cnv.height 
+           this.xDim,
+           this.yDim,
        );
     }
 }

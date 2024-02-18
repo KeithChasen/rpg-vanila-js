@@ -1,26 +1,32 @@
 class Player extends Person {
     controllers = null;
+    mapBorders = null;
 
-    constructor(x,y, ctx, cnv) {
+    constructor(x,y, ctx, cnv, mapBorders) {
         super(x,y, ctx, cnv);
+
+        this.mapBorders = mapBorders;
 
         this.controllers = new Controllers();
     }
 
     update() {
-        if (this.controllers.up) {
+
+        // console.log(this.x, this.y)
+
+        if (this.controllers.up && this.y > 0) {
             this.y -= this.speed;
         }
 
-        if (this.controllers.down) {
+        if (this.controllers.down && this.y < this.mapBorders.y - this.h) {
             this.y += this.speed;
         }
 
-        if (this.controllers.left) {
+        if (this.controllers.left && this.x > 0) {
             this.x -= this.speed;
         }
 
-        if (this.controllers.right) {
+        if (this.controllers.right && this.x < this.mapBorders.x - this.w) {
             this.x += this.speed;
         }
     }
