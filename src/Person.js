@@ -3,6 +3,17 @@ class Person {
     velocity = new Vector(0, 0);
     speed = 2;
 
+    mapBorders = null;
+    squareSize = 0;
+
+    setSquareSize(squareSize){
+        this.squareSize = squareSize;
+    }
+
+    setMapBorders(mapBorders) {
+        this.mapBorders = mapBorders;
+    }
+
     w = 20;
     h = 20;
 

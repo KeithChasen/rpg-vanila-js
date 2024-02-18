@@ -71,6 +71,11 @@ class GameMap {
     }
 
     drawInMovement(image) {
+        // console.log({
+        //     x: this.whereToPlace.x,
+        //     y: this.whereToPlace.y
+        // })
+
         this.ctx.drawImage(
             image,
 

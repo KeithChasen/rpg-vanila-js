@@ -29,11 +29,13 @@ const levelMaps = {
         npc: [
             {
                 name: 'Ollard',
-                position: { x: 9, y: 10 }
+                position: { x: 9, y: 10 },
+                color: 'blue'
             },
             {
                 name: 'Jane',
-                position: { x: 15, y: 5 }
+                position: { x: 15, y: 5 },
+                color: 'pink'
             }
         ]
     }

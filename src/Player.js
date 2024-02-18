@@ -1,20 +1,11 @@
 class Player extends Person {
     controllers = null;
-    mapBorders = null;
-    squareSize = 0;
+    
     walls = [];
 
     constructor() {
         super();
         this.controllers = new Controllers();
-    }
-
-    setSquareSize(squareSize){
-        this.squareSize = squareSize;
-    }
-
-    setMapBorders(mapBorders) {
-        this.mapBorders = mapBorders;
     }
 
     setWalls(walls) {
@@ -98,6 +89,7 @@ class Player extends Person {
             this.w,
             this.h
         );
+        this.ctx.fillStyle = 'black';
         this.ctx.fill();
     }
 
