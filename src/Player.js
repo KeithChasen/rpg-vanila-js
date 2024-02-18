@@ -24,32 +24,62 @@ class Player extends Person {
     update() {
         this.velocity = new Vector(0, 0);
 
-        if (this.controllers.up && this.position.y > 0) {
-            this.velocity = new Vector(
-                this.velocity.x,
-                this.velocity.y - this.speed
-            )
+        if (
+            this.controllers.up && this.position.y > 0
+        ) {
+            const vectorToCheck = {
+                x: Math.round(this.position.x / this.squareSize),
+                y: Math.round((this.position.y - 2) / this.squareSize)
+            }
+
+            if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+                this.velocity = new Vector(
+                    this.velocity.x,
+                    this.velocity.y - this.speed
+                )
+            }   
         }
 
         if (this.controllers.down && this.position.y < this.mapBorders.y - this.h) {
-            this.velocity = new Vector(
-                this.velocity.x,
-                this.velocity.y + this.speed
-            )
+            const vectorToCheck = {
+                x: Math.round(this.position.x / this.squareSize),
+                y: Math.round((this.position.y + 2) / this.squareSize)
+            }
+
+            if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+                this.velocity = new Vector(
+                    this.velocity.x,
+                    this.velocity.y + this.speed
+                )
+            }
         }
 
         if (this.controllers.left && this.position.x > 0) {
-            this.velocity = new Vector(
-                this.velocity.x - this.speed,
-                this.velocity.y
-            )
+            const vectorToCheck = {
+                x: Math.round((this.position.x - 2) / this.squareSize),
+                y: Math.round((this.position.y) / this.squareSize)
+            }
+
+            if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+                this.velocity = new Vector(
+                    this.velocity.x - this.speed,
+                    this.velocity.y
+                )
+            }
         }
 
         if (this.controllers.right && this.position.x < this.mapBorders.x - this.w) {
-            this.velocity = new Vector(
-                this.velocity.x + this.speed,
-                this.velocity.y
-            )
+            const vectorToCheck = {
+                x: Math.round((this.position.x + 2) / this.squareSize),
+                y: Math.round((this.position.y) / this.squareSize)
+            }
+
+            if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+                this.velocity = new Vector(
+                    this.velocity.x + this.speed,
+                    this.velocity.y
+                )
+            }
         }
 
         this.velocity.normalize();
