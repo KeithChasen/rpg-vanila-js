@@ -1,18 +1,12 @@
 class Player extends Person {
     controllers = null;
     
-    walls = [];
-
     constructor() {
         super();
         this.controllers = new Controllers();
     }
 
-    setWalls(walls) {
-        this.walls = walls;
-    }
-
-    update() {
+    update(map) {
         this.velocity = new Vector(0, 0);
 
         if (
@@ -23,7 +17,8 @@ class Player extends Person {
                 y: Math.round((this.position.y - 2) / this.squareSize)
             }
 
-            if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+            // if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+            if (!map.isWall(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
                 this.velocity = new Vector(
                     this.velocity.x,
                     this.velocity.y - this.speed
@@ -37,7 +32,7 @@ class Player extends Person {
                 y: Math.round((this.position.y + 2) / this.squareSize)
             }
 
-            if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+            if (!map.isWall(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
                 this.velocity = new Vector(
                     this.velocity.x,
                     this.velocity.y + this.speed
@@ -51,7 +46,7 @@ class Player extends Person {
                 y: Math.round((this.position.y) / this.squareSize)
             }
 
-            if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+            if (!map.isWall(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
                 this.velocity = new Vector(
                     this.velocity.x - this.speed,
                     this.velocity.y
@@ -65,7 +60,7 @@ class Player extends Person {
                 y: Math.round((this.position.y) / this.squareSize)
             }
 
-            if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
+            if (!map.isWall(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
                 this.velocity = new Vector(
                     this.velocity.x + this.speed,
                     this.velocity.y

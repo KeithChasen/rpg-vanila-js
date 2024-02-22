@@ -1,8 +1,31 @@
 class GameMap {
     lowerPicture = null;
     upperPicture = null;
+
     ctx = null;
     cnv = null;
+
+    walls = [];
+
+    setWalls(walls) {
+        this.walls = walls;
+    }
+
+    addWall(wall) {
+        this.walls.push(wall);
+    }
+
+    removeWall(wall) {
+        //todo: implement
+    }
+
+    moveWall(wall) {
+        //todo: implement
+    }
+
+    isWall(coordinate) {
+        return this.walls.includes(coordinate)
+    }
 
     // the size of a 1 tile of a map
     //should be configurable

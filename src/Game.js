@@ -32,7 +32,9 @@ class Game {
         this.map.setLower(lowerImage);
         this.map.setUpper(topImage);
 
-        this.spawnPlayer(player.x, player.y, walls);
+        this.map.setWalls(walls)
+
+        this.spawnPlayer(player.x, player.y);
 
         if (npc.length) {
             npc.forEach(n => {
@@ -76,7 +78,7 @@ class Game {
         // process collisions here
     }
 
-    spawnPlayer(x, y, walls) {
+    spawnPlayer(x, y) {
         const mapBorders = {
             x: this.map.mapSize.x * this.map.squareSize,
             y: this.map.mapSize.y * this.map.squareSize,
@@ -92,7 +94,6 @@ class Game {
         this.player.setContext(this.ctx);
         this.player.setMapBorders(mapBorders);
         this.player.setSquareSize(this.map.squareSize);
-        this.player.setWalls(walls);
 
         this.map.setPlayer(this.player);
     }
@@ -108,7 +109,7 @@ class Game {
     run() {
         this.sRender();
         
-        this.player.update();
+        this.player.update(this.map);
        
         this.currentFrame++;
     }
