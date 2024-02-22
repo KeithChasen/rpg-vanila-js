@@ -48,6 +48,8 @@ class Game {
                 npc.setPlayer(this.player)
 
                 this.npcs.push(npc);
+
+                this.map.addWall(`${npc.position.x}-${npc.position.y}`);
             })
         }
     }
