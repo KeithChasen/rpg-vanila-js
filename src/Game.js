@@ -10,7 +10,7 @@ class Game {
 
     map = null;
 
-    currentFrame = 0;
+    // currentFrame = 0;
 
     init(cnv, ctx) {
         this.cnv = cnv;
@@ -19,7 +19,7 @@ class Game {
         // make this conditional
         const level = levelMaps.main;
 
-        const { player, walls, squareSize, mapSize, lowerImage, topImage, npc } =  level;
+        const { player, walls, squareSize, mapSize, lowerImage, topImage, npc } = level;
 
         this.map = new GameMap();
   
@@ -39,8 +39,10 @@ class Game {
         if (npc.length) {
             npc.forEach(n => {
                 const npc = new NPC(n.name, n.color);
+
                 npc.setCanvas(this.cnv);
                 npc.setContext(this.ctx);
+
                 npc.setPosition(n.position.x, n.position.y);
 
                 npc.setSquareSize(this.map.squareSize);
@@ -52,18 +54,6 @@ class Game {
                 this.map.addWall(`${npc.position.x}-${npc.position.y}`);
             })
         }
-    }
-
-    playerMovement() {
-
-    }
-
-    npcMovement() {
-
-    }
-
-    enemyMovement() {
-
     }
 
     sRender() {
@@ -100,19 +90,11 @@ class Game {
         this.map.setPlayer(this.player);
     }
 
-    spawnNPCs() {
-
-    }
-
-    spawnEnemies() {
-
-    }
-
     run() {
         this.sRender();
         
         this.player.update(this.map);
        
-        this.currentFrame++;
+        // this.currentFrame++;
     }
 }

@@ -30,13 +30,14 @@ const levelMaps = {
             {
                 name: 'Ollard',
                 position: { x: 9, y: 10 },
-                color: 'blue'
+                color: 'blue',
+                
             },
-            {
-                name: 'Jane',
-                position: { x: 15, y: 5 },
-                color: 'pink'
-            }
+            // {
+            //     name: 'Jane',
+            //     position: { x: 15, y: 5 },
+            //     color: 'pink'
+            // }
         ]
     }
 }

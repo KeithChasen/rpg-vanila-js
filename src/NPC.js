@@ -25,8 +25,8 @@ class NPC extends Person {
         const playerY = ~~ (this.player.position.y / this.squareSize);
 
         if (
-            (npcX == playerX && (npcY === playerY-1 || npcY === playerY+1)) ||
-            (npcY == playerY && (npcX === playerX-1 || npcX === playerX+1))
+            (npcX == playerX && (npcY === playerY || npcY === playerY-1 || npcY === playerY+1)) ||
+            (npcY == playerY && (npcX === playerX || npcX === playerX-1 || npcX === playerX+1))
         ) {
             this.showQuest = true;
         } else if (this.showQuest) {
