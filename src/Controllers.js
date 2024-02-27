@@ -4,6 +4,8 @@ class Controllers {
     left = false;
     right = false;
 
+    exit = false;
+
     constructor() {
         this.addEventListeners() 
     }
@@ -25,7 +27,9 @@ class Controllers {
             this.down = true;
         }
 
-        // console.table(this)
+        if (e.key === 'Escape') {
+            this.exit = true;
+        }
     }
 
     keyUpListener = e => {
@@ -45,7 +49,9 @@ class Controllers {
             this.down = false;
         }
 
-        // console.table(this)
+        if (e.key === 'Escape') {
+            this.exit = false;
+        }
     }
 
     addEventListeners() {

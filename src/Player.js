@@ -1,23 +1,17 @@
 class Player extends Person {
     controllers = null;
-    
-    constructor() {
-        super();
-        this.controllers = new Controllers();
-    }
 
-    update(map) {
+    update(map, controls) {
         this.velocity = new Vector(0, 0);
 
         if (
-            this.controllers.up && this.position.y > 0
+            controls.up && this.position.y > 0
         ) {
             const vectorToCheck = {
                 x: Math.round(this.position.x / this.squareSize),
                 y: Math.round((this.position.y - 2) / this.squareSize)
             }
 
-            // if (!this.walls.includes(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
             if (!map.isWall(`${vectorToCheck.x}-${vectorToCheck.y}`)) {
                 this.velocity = new Vector(
                     this.velocity.x,
@@ -26,7 +20,7 @@ class Player extends Person {
             }   
         }
 
-        if (this.controllers.down && this.position.y < this.mapBorders.y - this.h) {
+        if (controls.down && this.position.y < this.mapBorders.y - this.h) {
             const vectorToCheck = {
                 x: Math.round(this.position.x / this.squareSize),
                 y: Math.round((this.position.y + 2) / this.squareSize)
@@ -40,7 +34,7 @@ class Player extends Person {
             }
         }
 
-        if (this.controllers.left && this.position.x > 0) {
+        if (controls.left && this.position.x > 0) {
             const vectorToCheck = {
                 x: Math.round((this.position.x - 2) / this.squareSize),
                 y: Math.round((this.position.y) / this.squareSize)
@@ -54,7 +48,7 @@ class Player extends Person {
             }
         }
 
-        if (this.controllers.right && this.position.x < this.mapBorders.x - this.w) {
+        if (controls.right && this.position.x < this.mapBorders.x - this.w) {
             const vectorToCheck = {
                 x: Math.round((this.position.x + 2) / this.squareSize),
                 y: Math.round((this.position.y) / this.squareSize)

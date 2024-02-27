@@ -19,7 +19,15 @@ class Game {
         // make this conditional
         const level = levelMaps.main;
 
-        const { player, walls, squareSize, mapSize, lowerImage, topImage, npc } = level;
+        const { 
+            player, 
+            walls, 
+            squareSize, 
+            mapSize, 
+            lowerImage, 
+            topImage, 
+            npc 
+        } = level;
 
         this.map = new GameMap();
   
@@ -66,10 +74,6 @@ class Game {
         this.map.drawUpper();
     }
 
-    sCollision() {
-        // process collisions here
-    }
-
     spawnPlayer(x, y) {
         const mapBorders = {
             x: this.map.mapSize.x * this.map.squareSize,
@@ -90,10 +94,10 @@ class Game {
         this.map.setPlayer(this.player);
     }
 
-    run() {
+    run(controls) {
         this.sRender();
         
-        this.player.update(this.map);
+        this.player.update(this.map, controls);
        
         // this.currentFrame++;
     }
