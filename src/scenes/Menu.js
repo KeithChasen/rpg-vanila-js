@@ -1,8 +1,8 @@
 class Menu extends Scene {
 
-    button1 = { x: 0, y: 0, w: 0, h: 0};
-    button2 = { x: 0, y: 0, w: 0, h: 0};
-    button3 = { x: 0, y: 0, w: 0, h: 0};
+    button1 = { x: 0, y: 0, w: 0, h: 0, selected: false };
+    button2 = { x: 0, y: 0, w: 0, h: 0, selected: false };
+    button3 = { x: 0, y: 0, w: 0, h: 0, selected: false };
 
     constructor(canvas, context, engine) {
         super(canvas, context, engine);
@@ -15,7 +15,8 @@ class Menu extends Scene {
             y: cnvH / 4 + 10,
             w: cnvW / 4 - 20,
             h: cnvH / 10,
-            color: 'white'
+            color: 'white',
+            selected: false
         };
 
         this.button2 = {
@@ -23,7 +24,8 @@ class Menu extends Scene {
             y: cnvH / 4 + 10 + 100,
             w: cnvW / 4 - 20,
             h: cnvH / 10,
-            color: 'white'
+            color: 'white', 
+            selected: false
         }
 
         this.button3 = {
@@ -31,41 +33,46 @@ class Menu extends Scene {
             y: cnvH / 4 + 10 + 200,
             w: cnvW / 4 - 20,
             h: cnvH / 10,
-            color: 'white'
+            color: 'white', 
+            selected: false
         }
 
         this.addEventListeners();
     }
 
+    controlButton(e, button) {
+        if (
+            e.clientX > button.x && e.clientX < button.x + button.w
+            && e.clientY > button.y && e.clientY < button.y + button.h
+        ) {
+            button.color = 'grey'
+            button.selected = true;
+        } else {
+            if (button.color !== 'white') {
+                button.color = 'white'
+            }
+
+            if (button.selected) {
+                button.selected = false;
+            }
+        } 
+    }
+
     addEventListeners() {
         document.onmousemove = e => {
-            if (
-                e.clientX > this.button1.x && e.clientX < this.button1.x + this.button1.w
-                && e.clientY > this.button1.y && e.clientY < this.button1.y + this.button1.h
-            ) {
-                this.button1.color = 'grey'
-            } else if (this.button1.color !== 'white') {
-                this.button1.color = 'white'
-            }
+            this.controlButton(e, this.button1);
+            this.controlButton(e, this.button2);
+            this.controlButton(e, this.button3);
+        }
 
-            if (
-                e.clientX > this.button2.x && e.clientX < this.button2.x + this.button2.w
-                && e.clientY > this.button2.y && e.clientY < this.button2.y + this.button2.h
-            ) {
-                this.button2.color = 'grey'
-            } else if (this.button2.color !== 'white') {
-                this.button2.color = 'white'
-            }
+        document.onmousedown = () => {
+            if (this.button1.selected) {
+                console.log('start game')
 
-            if (
-                e.clientX > this.button3.x && e.clientX < this.button3.x + this.button3.w
-                && e.clientY > this.button3.y && e.clientY < this.button3.y + this.button3.h
-            ) {
-                this.button3.color = 'grey'
-            } else if (this.button3.color !== 'white') {
-                this.button3.color = 'white'
+                this.gameEngine.changeScene('game');
             }
         }
+        document.onmouseup = () => {}
     }
 
     doAction(action) {

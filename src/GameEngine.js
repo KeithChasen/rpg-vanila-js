@@ -28,6 +28,7 @@ class GameEngine {
 
     changeScene(scene) {
         if (scene === 'game') {
+            this.currentScene = 'game';
             this.game.init(this.canvas, this.context);
         }
     }
